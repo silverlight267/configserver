@@ -13,14 +13,7 @@ spring:
         uri: http://localhost:8083/view/welcome
         predicates:
             - Path=/microservice1/welcome
-      - id: microservice2WelcomeRoute
-        uri: http://localhost:8084/view/welcome
-        predicates:
-            - Path=/microservice2/welcome
-      - id: microservice3WelcomeRoute
-        uri: http://localhost:8085/view/welcome
-        predicates:
-            - Path=/microservice3/welcome
+
       - id: microservice1WelcomeRoute1
         uri: http://localhost:8083/view/welcome
         predicates:

@@ -43,5 +43,4 @@ spring:
         filters :
             - AddRequestHeader=addHeader, [NEW] The Header Value
             - AddRequestParameter=addParam,%5BNEW%5D+Param+Value
-server:
-  port: 8080
+server.port: 8080

@@ -6,73 +6,34 @@ spring:
     
       discovery:
          locator:
-             enabled: true
+             enabled: false    
     
       routes:
-        # Public Service
-      - id: publicHomePage
-        uri: http://localhost:9000
+      - id: microservice1WelcomeRoute
+        uri: http://localhost:8083/view/welcome
         predicates:
-            - Path=/
+            - Path=/microservice1/welcome
 
-      - id: requestToken
-        uri: http://localhost:9000/normal/requestToken
+      - id: microservice1WelcomeRoute1
+        uri: http://localhost:8083/view/welcome
         predicates:
-            - Path=/public/request-token
+            - Path=/microservice1/welcome1
+        filters :
+            - AddRequestHeader=addHeader, Header Value ...
 
-      - id: refreshToken
-        uri: http://localhost:9000/normal/refreshToken
+            
+      - id: microservice1WelcomeRoute2
+        uri: http://localhost:8083/view/welcome
         predicates:
-            - Path=/public/refresh-token
+            - Path=/microservice1/welcome2
+        filters :
+            - AddRequestParameter=addParam,Param+Value+...
 
-        # Authorization Server
-      - id: oauth2Authorize
-        uri: http://localhost:8085/oauth/authorize
+      - id: microservice1WelcomeRoute3
+        uri: http://localhost:8083/view/welcome
         predicates:
-            - Path=/oauth/authorize
-        
-      - id: oauth2GetToken
-        uri: http://localhost:8085/oauth/token
-        predicates:
-            - Path=/oauth/token
-        
-      - id: oauth2CheckToken
-        uri: http://localhost:8085/oauth/check_token
-        predicates:
-            - Path=/oauth/check_token
-
-      - id: oauth2ConfirmAccess
-        uri: http://localhost:8085/oauth/confirm_access
-        predicates:
-            - Path=/oauth/confirm_access
-
-      - id: oauth2Error
-        uri: http://localhost:8085/oauth/error
-        predicates:
-            - Path=/oauth/error
-
-      - id: oauth2TokenKey
-        uri: http://localhost:8085/oauth/token_key
-        predicates:
-            - Path=/oauth/token_key
-
-        # Account Service
-      - id: accountInfo
-        uri: http://localhost:8084/normal/information
-        predicates:
-            - Path=/account/information
-
-        # Order Service
-      - id: orderInfo
-        uri: http://localhost:8083/newcontrol/showinfo
-        predicates:
-            - Path=/order/information
-
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: '*'
+            - Path=/microservice1/welcome3
+        filters :
+            - AddRequestHeader=addHeader, [NEW] The Header Value
+            - AddRequestParameter=addParam,%5BNEW%5D+Param+Value
+server.port: 8080

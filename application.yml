@@ -1,13 +1,10 @@
 spring:
   application.name: gateway
-
   cloud:
     gateway:
-    
       discovery:
          locator:
-             enabled: false    
-    
+             enabled: false
       routes:
       - id: microservice1WelcomeRoute
         uri: http://localhost:8083/view/welcome
@@ -45,16 +42,3 @@ spring:
             - AddRequestParameter=addParam,%5BNEW%5D+Param+Value
 server:
   port: 8080
-  servlet:
-    session:
-      cookie:
-        name: UISESSION
-security:
-  oauth2:
-    client:
-      clientId: SampleClientId
-      clientSecret: secret
-      accessTokenUri: http://localhost:8079/auth/oauth/token
-      userAuthorizationUri: http://localhost:8079/auth/oauth/authorize
-    resource:
-      userInfoUri: http://localhost:8079/auth/principal
